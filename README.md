@@ -35,15 +35,16 @@ Params
 * lat={lat}&lon={lon} - Include lat and long in the url
 * city={city_name}    - Include the city name in the url
 
-### WIP - Get the next 3 days forecasts for a city or cities
+### Get the next 3 days forecasts for a city or cities
 
-In this endpoint we provide the next 3 days forecasts for a city or cities, at the moment it is not available.
+In this endpoint we provide the next 3 days forecasts for a city or cities.
 
 Endpoint
 * `/api/next-3-days`
 
 Params
-*
+* lat={lat}&lon={lon} - Include lat and long in the url
+* city={city_name}    - Include the city name in the url
 
 ### WIP - Get the warmest and coolest city in the next 3 days
 

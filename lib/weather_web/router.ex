@@ -9,7 +9,7 @@ defmodule WeatherWeb.Router do
     pipe_through :api
 
     get "/", API.LatestForecastsController, :index
-    # get "/next-3-days", API.NextThreeDaysForecastsController, :index
+    get "/next-3-days", API.NextThreeDaysForecastsController, :index
     # get "/warmest-and-coolest", API.WarmestAndCoolestController, :index
   end
 

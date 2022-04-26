@@ -4,6 +4,7 @@ defmodule Weather.API.Requests do
   def get(url) do
     case HTTPoison.get(url) do
       {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
+        Logger.info("Info for the following url: #{url}")
         body
 
       {:ok, %HTTPoison.Response{status_code: status_code}} ->
