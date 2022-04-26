@@ -46,15 +46,16 @@ Params
 * lat={lat}&lon={lon} - Include lat and long in the url
 * city={city_name}    - Include the city name in the url
 
-### WIP - Get the warmest and coolest city in the next 3 days
+### Get the warmest or coolest city in the next 3 days
 
-In this endpoint we provide the warmest and coolest city in the next 3 days, at the moment it is not available.
+In this endpoint we provide the warmest or coolest city in the next 3 days.
 
 Endpoint
-* `/api/warmest-and-coolest`
+* `/api/next-3-days/warmest`
+* `/api/next-3-days/coolest`
 
 Params
-*
+* city[]={city_name_a}&city[]={city_name_b} - Include the city name in the url
 
 
 ## Improvements
@@ -81,3 +82,23 @@ deal with error codes.
 
 * Write module docs and function docs to make them even more clear.
 
+* The pattern
+```
+    case response do
+      # response was %{error: not found}
+      %{} ->
+        response
+
+      _other ->
+        do_func(response)
+    end
+```
+Repeats its self sometimes, maybe it would be nice to have a macro to handle it or
+a possible early raise is also an option.
+
+* max temp and min temp could be handled as a Protocal or case, for now
+we are just using func pattern matching.
+
+* NextThreeDaysForecastsData and LatestForecastsData have methods inheritance,
+for now we are just forwarding the method behaviour to a common module, but
+we could also use the macro "using" to do it, but this could cause readability problems.

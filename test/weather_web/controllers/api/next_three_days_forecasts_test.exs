@@ -58,4 +58,50 @@ defmodule WeatherWeb.Controllers.API.NextThreeDaysForecastsControllerTest do
       assert %{"error" => "Not found"} = json_response(conn, 200)["data"]
     end
   end
+
+  describe "GET /api/next-3-days/warmest/city[]=city_a&city[]=city_b" do
+    test "shows the warmest city", %{conn: conn} do
+      conn =
+        build_conn()
+        |> get(
+          Routes.next_three_days_forecasts_path(conn, :warmest, %{city: ["Dortmund", "Alaska"]})
+        )
+
+      assert %{"city" => "Dortmund"} = json_response(conn, 200)["data"]
+    end
+
+    test "shows an error for an invalid city", %{conn: conn} do
+      conn =
+        build_conn()
+        |> get(Routes.next_three_days_forecasts_path(conn, :warmest, %{city: ["", ""]}))
+
+      assert %{
+               "city" => "",
+               "temp" => %{"error" => "Not found"}
+             } = json_response(conn, 200)["data"]
+    end
+  end
+
+  describe "GET /api/next-3-days/coolest/city[]=city_a&city[]=city_b" do
+    test "shows the coolest city", %{conn: conn} do
+      conn =
+        build_conn()
+        |> get(
+          Routes.next_three_days_forecasts_path(conn, :coolest, %{city: ["Dortmund", "Alaska"]})
+        )
+
+      assert %{"city" => "Alaska"} = json_response(conn, 200)["data"]
+    end
+
+    test "shows an error for an invalid city", %{conn: conn} do
+      conn =
+        build_conn()
+        |> get(Routes.next_three_days_forecasts_path(conn, :coolest, %{city: ["", ""]}))
+
+      assert %{
+               "city" => "",
+               "temp" => %{"error" => "Not found"}
+             } = json_response(conn, 200)["data"]
+    end
+  end
 end

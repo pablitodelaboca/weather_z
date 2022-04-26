@@ -4,4 +4,12 @@ defmodule WeatherWeb.API.NextThreeDaysForecastsView do
   def render("index.json", %{data: data}) do
     %{data: data}
   end
+
+  def render("warmest.json", %{data: data}) do
+    %{data: data}
+  end
+
+  def render("coolest.json", %{data: data}) do
+    %{data: data}
+  end
 end

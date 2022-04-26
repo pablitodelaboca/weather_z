@@ -9,8 +9,12 @@ defmodule WeatherWeb.Router do
     pipe_through :api
 
     get "/", API.LatestForecastsController, :index
-    get "/next-3-days", API.NextThreeDaysForecastsController, :index
-    # get "/warmest-and-coolest", API.WarmestAndCoolestController, :index
+
+    scope "/next-3-days" do
+      get "/", API.NextThreeDaysForecastsController, :index
+      get "/warmest", API.NextThreeDaysForecastsController, :warmest
+      get "/coolest", API.NextThreeDaysForecastsController, :coolest
+    end
   end
 
   # Enables LiveDashboard only for development
